@@ -1,88 +1,58 @@
 # Library Management System
 
-## 1. Project Overview
+## Project Overview
 
-The Library Management System is a full-stack web application that allows administrators to manage books and users, and allows registered users to issue and return books.
+The Library Management System is a full stack web application designed to automate and manage the operations of a library such as managing books, users, issuing and returning books in a systematic and efficient manner.
 
-The system focuses mainly on backend architecture using proper software engineering principles such as OOP, layered architecture, and clean separation of concerns.
-
-Backend Weightage: 75%
-Frontend Weightage: 25%
+This project uses a layered backend architecture and clean separation of concerns to achieve high code quality, maintainability, and scalability. Auth, roles, book lifecycle, issuance and fine tracking form the core backend logic.
 
 ---
 
-## 2. Scope of the Project
+## Scope
 
-This system will allow:
-
-- Admin to manage books (add, update, delete)
-- Admin to manage users
-- Users to search books
-- Users to issue books
-- Users to return books
-- Automatic fine calculation for late return
-- View issued books history
-
-This is a multi-role system:
-- Admin
-- Member (User)
+The system will support:
+- User registration & login
+- Role based access: Admin and Member
+- Book catalog management
+- Issue and return of books
+- Fine calculation for late returns
+- Search & filter books
 
 ---
 
-## 3. Key Features
+## Key Features
 
 ### Authentication & Authorization
-- User Registration
-- Login (JWT/session-based authentication)
-- Role-based access control
+- Users can register and login
+- JWT or session based authentication
+- Role based access control (Admin vs Member)
 
 ### Book Management
-- Add new book
-- Update book details
-- Delete book
-- Search book by title/author/category
-- View availability status
+- CRUD operations on books
+- Availability status
+- Search & filter by title/author/category
 
-### Issue & Return System
-- Issue book (if available)
-- Return book
+### Book Issue & Return
+- Member issues a book if available
+- Admin/member returns the book
 - Due date tracking
-- Fine calculation for late return
-
-### Reports
-- View issued books
-- View overdue books
-- View fine history
+- Fine generation for overdue returns
 
 ---
 
-## 4. Backend Architecture
+## Architecture & Design
 
-The backend will follow a layered architecture:
+Backend follows:
+- Layered architecture (Controller → Service → Repository)
+- OOP features (Inheritance, Abstraction, Encapsulation, Polymorphism)
+- Design Patterns: Repository, Service Layer, DTO pattern
 
-- Controller Layer
-- Service Layer
-- Repository Layer
-- Model/Entity Layer
-
-OOP Principles Used:
-- Encapsulation (private fields with getters/setters)
-- Abstraction (service interfaces)
-- Inheritance (User → Admin, Member)
-- Polymorphism (method overriding where required)
-
-Design Patterns:
-- Repository Pattern
-- Service Layer Pattern
-- Factory Pattern (optional for user creation)
-- Singleton (configuration)
+Frontend is simple interface (can be React/HTML/CSS)
 
 ---
 
-## 5. Future Enhancements (Optional)
-
-- Book reservation system
-- Email notifications
-- Pagination & sorting
-- Fine payment integration
-- Admin analytics dashboard
+## Backend Technologies (suggestion)
+- Java Spring Boot or Node.js + Express
+- MySQL or PostgreSQL
+- JWT Authentication
+- REST APIs
