@@ -1,8 +1,8 @@
-# Class Diagram - Library Management System
+# Class Diagram – Library Management System
 
-Classes:
+## Major Classes
 
-User (Abstract)
+### User (Abstract)
 - id
 - name
 - email
@@ -11,38 +11,41 @@ User (Abstract)
 + login()
 + logout()
 
-Admin extends User
+### Admin extends User
 + addBook()
 + updateBook()
 + deleteBook()
-+ manageUsers()
 
-Member extends User
+### Member extends User
 + searchBook()
 + issueBook()
 + returnBook()
-+ viewIssuedBooks()
 
-Book
+### Book
 - id
 - title
 - author
 - category
+- totalCopies
 - availableCopies
 + updateAvailability()
 
-IssueRecord
+### IssueRecord
 - id
+- userId
+- bookId
 - issueDate
 - dueDate
 - returnDate
-- fineAmount
+- fine
 - status
 + calculateFine()
 
-Relationships:
+---
 
-User (1) ---- (M) IssueRecord
-Book (1) ---- (M) IssueRecord
-Admin ----|> User
+## Relationships
+
+User (1) ---- (M) IssueRecord  
+Book (1) ---- (M) IssueRecord  
+Admin ----|> User  
 Member ----|> User
