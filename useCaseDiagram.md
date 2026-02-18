@@ -1,3 +1,5 @@
+![Use Case Diagram](images/use_case_diagram.png)
+
 # Use Case Diagram – Library Management System
 
 ## Actors
