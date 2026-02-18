@@ -1,51 +1,62 @@
 # Class Diagram – Library Management System
 
-## Major Classes
+----------------------------------
+ABSTRACT CLASS
+----------------------------------
 
-### User (Abstract)
-- id
-- name
-- email
-- password
-- role
+User
+- id : Long
+- name : String
+- email : String
+- password : String
+- role : String
 + login()
 + logout()
 
-### Admin extends User
+----------------------------------
+INHERITED CLASSES
+----------------------------------
+
+Admin extends User
 + addBook()
 + updateBook()
 + deleteBook()
++ manageUsers()
 
-### Member extends User
+Member extends User
 + searchBook()
 + issueBook()
 + returnBook()
++ viewMyIssuedBooks()
 
-### Book
-- id
-- title
-- author
-- category
-- totalCopies
-- availableCopies
+----------------------------------
+OTHER CLASSES
+----------------------------------
+
+Book
+- id : Long
+- title : String
+- author : String
+- category : String
+- totalCopies : int
+- availableCopies : int
 + updateAvailability()
 
-### IssueRecord
-- id
-- userId
-- bookId
-- issueDate
-- dueDate
-- returnDate
-- fine
-- status
+IssueRecord
+- id : Long
+- issueDate : Date
+- dueDate : Date
+- returnDate : Date
+- fineAmount : double
+- status : String
 + calculateFine()
 
----
+----------------------------------
+RELATIONSHIPS
+----------------------------------
 
-## Relationships
+User 1 ----- * IssueRecord  
+Book 1 ----- * IssueRecord  
 
-User (1) ---- (M) IssueRecord  
-Book (1) ---- (M) IssueRecord  
-Admin ----|> User  
-Member ----|> User
+Admin  ----|>  User  
+Member ----|>  User
