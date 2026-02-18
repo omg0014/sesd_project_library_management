@@ -1,3 +1,5 @@
+![Class Diagram](images/img3.png)
+
 # Class Diagram – Library Management System
 
 ----------------------------------

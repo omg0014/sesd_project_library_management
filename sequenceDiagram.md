@@ -1,3 +1,5 @@
+![Sequence Diagram](images/img2.png)
+
 # Sequence Diagram — Library Management System
 
 ## Main Flow: End-to-End Book Issue & Return Lifecycle
