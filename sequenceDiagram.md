@@ -1,28 +1,26 @@
-# Sequence Diagram - Issue Book Flow
+# Sequence Diagram – Issue & Return Flow
 
-Main Flow: Member Issues a Book
+## Issue Book
 
-1. Member logs into system
-2. Member searches for a book
-3. Member clicks "Issue Book"
+Member -> AuthController: login(credentials)
+AuthController -> AuthService: validateUser()
+AuthService -> DB: fetchUser()
+AuthService -> AuthController: return token
+Member -> BookController: requestIssue(bookId, token)
+BookController -> BookService: checkAvailability(bookId)
+BookService -> Repository: fetchBook()
+Repository -> BookService: book data
+BookService -> IssueService: createIssueRecord(memberId, bookId)
+IssueService -> IssueRepository: save()
+IssueService -> BookRepository: decrement availableCopies
+BookService -> BookController: success
+BookController -> Member: Book Issued
 
-Sequence:
+## Return Book
 
-Member -> Controller: requestIssueBook(bookId)
-Controller -> Service: issueBook(memberId, bookId)
-Service -> Repository: findBookById(bookId)
-Repository -> Service: return Book
-
-Service -> Repository: checkIfAlreadyIssued(memberId, bookId)
-Repository -> Service: return status
-
-Service -> Repository: createIssueRecord()
-Service -> Repository: updateBookAvailability()
-
-Service -> Controller: Issue Success
-Controller -> Member: Success Response
-
-Alternative Flow:
-If book not available:
-Service -> Controller: Book Not Available
-Controller -> Member: Error Message
+Member -> BookController: returnBook(bookId, token)
+BookController -> BookService: calculateFine(memberId, bookId)
+BookService -> IssueRepository: fetchIssue()
+BookService -> FineService: computeFine()
+FineService -> BookRepository: increment availableCopies
+BookController -> Member: Return Success & Fine Info
