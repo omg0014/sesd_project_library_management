@@ -1,12 +1,14 @@
 # Use Case Diagram – Library Management System
 
-Actors:
-- Admin
-- Member
+## Actors
 
-Use Cases:
+1. Admin
+2. Member
 
-Admin:
+---
+
+## Admin Use Cases
+
 - Login
 - Add Book
 - Update Book
@@ -15,7 +17,10 @@ Admin:
 - View Issued Books
 - Manage Users
 
-Member:
+---
+
+## Member Use Cases
+
 - Register
 - Login
 - Search Book
@@ -24,6 +29,16 @@ Member:
 - View My Issued Books
 - View Fine Details
 
-Includes:
-- Issue Book includes Check Availability
-- Return Book includes Calculate Fine
+---
+
+## Relationships
+
+Admin → Manage Books  
+Admin → Manage Users  
+
+Member → Search Book  
+Member → Issue Book  
+Member → Return Book  
+
+Issue Book → includes Check Availability  
+Return Book → includes Calculate Fine
