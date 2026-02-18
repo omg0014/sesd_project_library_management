@@ -1,26 +1,38 @@
-# Sequence Diagram – Issue & Return Flow
+# Sequence Diagram – Main Flow
 
-## Issue Book
+----------------------------------
+ISSUE BOOK FLOW
+----------------------------------
 
-Member -> AuthController: login(credentials)
-AuthController -> AuthService: validateUser()
-AuthService -> DB: fetchUser()
-AuthService -> AuthController: return token
-Member -> BookController: requestIssue(bookId, token)
-BookController -> BookService: checkAvailability(bookId)
-BookService -> Repository: fetchBook()
-Repository -> BookService: book data
-BookService -> IssueService: createIssueRecord(memberId, bookId)
-IssueService -> IssueRepository: save()
-IssueService -> BookRepository: decrement availableCopies
-BookService -> BookController: success
-BookController -> Member: Book Issued
+Member → AuthController : login()
+AuthController → AuthService : validateUser()
+AuthService → UserRepository : findByEmail()
+UserRepository → AuthService : user
+AuthService → AuthController : token
 
-## Return Book
+Member → BookController : issueBook(bookId)
+BookController → BookService : checkAvailability()
+BookService → BookRepository : findById()
+BookRepository → BookService : book
 
-Member -> BookController: returnBook(bookId, token)
-BookController -> BookService: calculateFine(memberId, bookId)
-BookService -> IssueRepository: fetchIssue()
-BookService -> FineService: computeFine()
-FineService -> BookRepository: increment availableCopies
-BookController -> Member: Return Success & Fine Info
+BookService → IssueService : createIssueRecord()
+IssueService → IssueRepository : save()
+IssueService → BookRepository : updateAvailableCopies()
+
+BookController → Member : Issue Success
+
+----------------------------------
+RETURN BOOK FLOW
+----------------------------------
+
+Member → BookController : returnBook(bookId)
+BookController → BookService : getIssueRecord()
+BookService → IssueRepository : findActiveIssue()
+
+BookService → FineService : calculateFine()
+FineService → BookService : fineAmount
+
+BookService → IssueRepository : updateReturnDetails()
+BookService → BookRepository : increaseAvailableCopies()
+
+BookController → Member : Return Success + Fine Info
