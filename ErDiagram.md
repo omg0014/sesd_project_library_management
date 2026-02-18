@@ -1,3 +1,5 @@
+![ER Diagram](images/er_diagram.png)
+
 # ER Diagram – Library Management System
 
 =========================================
