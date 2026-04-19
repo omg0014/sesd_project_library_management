@@ -14,9 +14,11 @@ export const Navbar = () => {
 
     if (!user) return null;
 
+    const dashboardPath = user.role === 'ADMIN' ? '/admin' : '/member';
+
     return (
         <nav className="navbar">
-            <Link to="/" className="nav-brand flex-center" style={{ gap: '0.5rem' }}>
+            <Link to={dashboardPath} className="nav-brand flex-center" style={{ gap: '0.5rem' }}>
                 <BookOpen color="var(--secondary)" />
                 <span>LMS Premium</span>
             </Link>
