@@ -44,7 +44,7 @@ export class IssueService {
         const fineAmount = this.fineService.calculateFine(activeIssue.dueDate, returnDate);
         
         await this.issueRepository.updateReturnDetails(
-            activeIssue._id as unknown as string,
+            (activeIssue as any)._id as unknown as string,
             returnDate,
             fineAmount,
             IssueStatus.RETURNED
