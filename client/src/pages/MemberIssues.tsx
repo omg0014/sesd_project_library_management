@@ -8,7 +8,7 @@ export const MemberIssues = () => {
 
     const fetchIssues = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/issues/my-issues');
+            const res = await axios.get('/api/issues/my-issues');
             setIssues(res.data.data);
         } catch (err: any) {
             console.error(err);
@@ -23,7 +23,7 @@ export const MemberIssues = () => {
         try {
             setError('');
             setSuccess('');
-            const res = await axios.post('http://localhost:5000/api/issues/return', { bookId });
+            const res = await axios.post('/api/issues/return', { bookId });
             setSuccess(`Book returned successfully! \nFine Billed: $${res.data.data.fineAmount.toFixed(2)}`);
             fetchIssues();
         } catch (err: any) {

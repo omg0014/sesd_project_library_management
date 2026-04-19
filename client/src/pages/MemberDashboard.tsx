@@ -11,7 +11,7 @@ export const MemberDashboard = () => {
 
     const searchBooks = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/books/search?q=${query}`);
+            const res = await axios.get(`/api/books/search?q=${query}`);
             setBooks(res.data.data);
         } catch (err: any) {
             console.error(err);
@@ -31,7 +31,7 @@ export const MemberDashboard = () => {
                 setError('Please select a return due-date before issuing.');
                 return;
             }
-            await axios.post('http://localhost:5000/api/issues/issue', { bookId, requestedDueDate });
+            await axios.post('/api/issues/issue', { bookId, requestedDueDate });
             setSuccess('Book issued successfully!');
             searchBooks(); // Refresh availability
         } catch (err: any) {

@@ -39,11 +39,11 @@ export const AuthPage = () => {
 
         try {
             if (isLogin) {
-                const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+                const res = await axios.post('/api/auth/login', { email, password });
                 login(res.data.data.token, res.data.data.user);
                 navigate(res.data.data.user.role === 'ADMIN' ? '/admin' : '/member');
             } else {
-                await axios.post('http://localhost:5000/api/auth/register', { name, email, password, phoneNumber, role });
+                await axios.post('/api/auth/register', { name, email, password, phoneNumber, role });
                 setIsLogin(true); // Switch to login after successful register
                 setError('Registration successful! Please login.');
             }

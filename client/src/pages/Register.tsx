@@ -14,7 +14,7 @@ export const Register = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/auth/register', { name, email, password, phoneNumber, role });
+            await axios.post('/api/auth/register', { name, email, password, phoneNumber, role });
             navigate('/login');
         } catch (err: any) {
             setError(err.response?.data?.error || 'Registration failed');

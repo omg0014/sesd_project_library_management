@@ -9,7 +9,7 @@ export const AdminDashboard = () => {
     const [totalCopies, setTotalCopies] = useState(1);
 
     const fetchBooks = async () => {
-        const res = await axios.get('http://localhost:5000/api/books/search');
+        const res = await axios.get('/api/books/search');
         setBooks(res.data.data);
     };
 
@@ -19,7 +19,7 @@ export const AdminDashboard = () => {
 
     const handleAddBook = async (e: React.FormEvent) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/books', { title, author, category: 'General', totalCopies });
+        await axios.post('/api/books', { title, author, category: 'General', totalCopies });
         setTitle('');
         setAuthor('');
         setTotalCopies(1);
@@ -27,7 +27,7 @@ export const AdminDashboard = () => {
     };
 
     const handleDelete = async (id: string) => {
-        await axios.delete(`http://localhost:5000/api/books/${id}`);
+        await axios.delete(`/api/books/${id}`);
         fetchBooks();
     };
 

@@ -6,7 +6,7 @@ export const AdminRecords = () => {
 
     const fetchRecords = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/issues/all');
+            const res = await axios.get('/api/issues/all');
             setRecords(res.data.data);
         } catch (err: any) {
             console.error(err);
